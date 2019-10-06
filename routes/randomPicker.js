@@ -38,7 +38,6 @@ module.exports = app => {
             location: locationCombined,
             phone: randomfoodPlace.display_phone
         }
-        console.log(randomfoodPlace);
 
 
         res.json(finalPlace);

@@ -7,6 +7,7 @@
     "material-ui-search-bar": "^0.4.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-google-location": "^1.2.2",
     "react-load-script": "0.0.6",
     "react-places-autocomplete": "^7.2.1",
     "react-router-dom": "^5.1.2",

@@ -14,6 +14,8 @@ class RandomPlace extends Component {
         this.setState({ response: (res.data) })
     }
 
+
+
     render() {
         return (
             <div>
