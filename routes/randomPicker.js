@@ -26,14 +26,22 @@ module.exports = app => {
 
     app.get('/api/getPlace', async (req, res) => {
         const response = await client.search({
-            searchType: "Coffe",
-            location: "San Francisco, CA",
+            searchType: foodType,
+            location: address,
         })
+        let randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
+        const randomfoodPlace = response.jsonBody.businesses[randomNum];
+        let locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city} ${randomfoodPlace.location.zip_code} ${randomfoodPlace.location.state}`;
+        const finalPlace = {
+            name: randomfoodPlace.name,
+            price: randomfoodPlace.price,
+            location: locationCombined,
+            phone: randomfoodPlace.display_phone
+        }
+        console.log(randomfoodPlace);
 
-        const foodPlace = response.jsonBody.businesses[9];
 
-        console.log(foodPlace);
-        res.json(foodPlace)
+        res.json(finalPlace);
     })
 
 }
