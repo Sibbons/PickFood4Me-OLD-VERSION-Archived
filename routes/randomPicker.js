@@ -7,8 +7,9 @@ const client = yelp.client('zqu6rA6DFZHinP0SJbhZCyY3b4XI8Sdi5P8tmmPlfglgJ3L4tUmG
 module.exports = app => {
 
     let address = "";
-    let foodType = "";
-
+    const foodType = "restaurants";
+    const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease";
+    const range = 25000;
 
     app.get('/', (req, res) => {
         res.send('Hacked into the mainframe');
@@ -18,8 +19,6 @@ module.exports = app => {
 
     app.post('/api/inputFields', (req, res) => {
         address = req.body.address.replace(', USA', '');
-        foodType = req.body.foodType;
-        console.log('INSIDE POST', address, foodType);
     })
 
 
@@ -28,7 +27,10 @@ module.exports = app => {
         const response = await client.search({
             searchType: foodType,
             location: address,
+            categories: choices,
+            radius: range,
         })
+
         let randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
         const randomfoodPlace = response.jsonBody.businesses[randomNum];
         let locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city} ${randomfoodPlace.location.zip_code} ${randomfoodPlace.location.state}`;
@@ -39,8 +41,8 @@ module.exports = app => {
             phone: randomfoodPlace.display_phone
         }
 
-
         res.json(finalPlace);
+
     })
 
 }

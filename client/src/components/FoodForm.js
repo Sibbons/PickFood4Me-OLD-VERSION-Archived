@@ -7,7 +7,6 @@ class FoodForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            foodType: '',
             address: '',
         };
     }
@@ -20,15 +19,13 @@ class FoodForm extends Component {
 
 
     handleSubmit = event => {
-        const foodType = this.state.foodType;
         const address = this.state.address.place;
         const data = {
-            foodType,
             address
         }
         event.preventDefault();
         console.log(data);
-        fetch('http://localhost:5000/api/inputFields', {
+        fetch('/api/inputFields', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -43,11 +40,6 @@ class FoodForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Type of food</label>
-                    <br />
-
-                    <input type="text" value={this.state.foodType} onChange={this.handleFoodChange} placeholder="Default Anything" />
-                    <br />
                     <label>Current Location</label>
                     <GoogleComponent
 

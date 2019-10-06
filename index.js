@@ -7,4 +7,4 @@ app.use(bodyParser.json());
 app.use(cors());
 require('./routes/randomPicker')(app);
 
-app.listen(5000);
+app.listen(4000);

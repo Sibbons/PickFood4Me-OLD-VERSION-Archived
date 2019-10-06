@@ -17,15 +17,20 @@ class RandomPlace extends Component {
 
 
     render() {
-        return (
-            <div>
-                <p>Name: {this.state.response.name}</p>
-                <p>Price: {this.state.response.price}</p>
-                <p>Location: {this.state.response.location}</p>
-                <p>Phone: {this.state.response.phone}</p>
+        if ('phone' in this.state.response) {
+            return (
+                <div>
+                    <p>Name: {this.state.response.name}</p>
+                    <p>Price: {this.state.response.price}</p>
+                    <p>Location: {this.state.response.location}</p>
+                    <p>Phone: {this.state.response.phone}</p>
 
-            </div>
-        );
+                </div>
+            )
+        } else {
+            return <h1>Loading Please Wait</h1>
+        }
+
     }
 }
 
