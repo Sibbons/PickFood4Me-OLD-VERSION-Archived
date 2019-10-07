@@ -29,6 +29,7 @@ module.exports = app => {
             location: address,
             categories: choices,
             radius: range,
+            open_now: true,
         })
 
         let randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));

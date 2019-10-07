@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 class RandomPlace extends Component {
     constructor(props) {
         super(props);
@@ -8,10 +7,10 @@ class RandomPlace extends Component {
         };
     }
 
-    async componentDidMount() {
-        const res = await axios.get('/api/getPlace');
-        console.log('res', res.data);
-        this.setState({ response: (res.data) })
+    componentDidMount() {
+        fetch('/api/getPlace')
+            .then(response => response.json())
+            .then(response => this.setState({ response }));
     }
 
 

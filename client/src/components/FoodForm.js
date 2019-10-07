@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete';
 import { GoogleComponent } from 'react-google-location'
 
 
@@ -39,19 +38,20 @@ class FoodForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Current Location</label>
+                <h1>Can't Decide Where to eat?</h1>
+                <h2>Enter a location below for a random spot!!</h2>
+                <form onSubmit={this.handleSubmit} className="formContainer">
                     <GoogleComponent
-
                         apiKey={"AIzaSyBvloS4OahFAEgjuX67ntBAB6FgdVhQgZU&libraries=places"}
                         language={'en'}
                         country={'country:in|country:us'}
                         coordinates={true}
-                        locationBoxStyle={'custom-style'}
-                        locationListStyle={'custom-style-list'}
-                        onChange={this.handleAddressChange} />
+                        locationBoxStyle={'searchBox'}
+                        locationListStyle={'listStyle'}
+                        onChange={this.handleAddressChange}
+                        placeholder="" />
 
-                    <button onClick={this.redirect}>Submit</button>
+                    <button className="butn">Find me Food</button>
                 </form>
 
             </div>
