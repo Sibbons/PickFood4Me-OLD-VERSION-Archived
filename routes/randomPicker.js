@@ -11,9 +11,7 @@ module.exports = app => {
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease";
     const range = 25000;
 
-    app.get('/', (req, res) => {
-        res.send('Hacked into the mainframe');
-    })
+
 
 
 
