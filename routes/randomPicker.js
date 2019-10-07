@@ -1,7 +1,7 @@
 'use strict';
-
+const keys = require('../keys')
 const yelp = require('yelp-fusion');
-const client = yelp.client('zqu6rA6DFZHinP0SJbhZCyY3b4XI8Sdi5P8tmmPlfglgJ3L4tUmGIX8ndSuz7c2jIEmUdxn6KXXbq6HuNumZ2KVza5queU9l5p0RwUKM0t8wZKa1NvlLkIKQCiKZXXYx');
+const client = yelp.client(keys.yelpKey);
 
 
 module.exports = app => {
@@ -9,9 +9,7 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease";
-    const range = 25000;
-
-
+    const range = 30000;
 
 
 

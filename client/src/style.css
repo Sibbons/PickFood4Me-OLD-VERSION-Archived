@@ -2,46 +2,36 @@ body{
   font-family: -Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .App {
-  display: flex;
-  justify-content:center ;
-}
-
-
-.formContainer{
-  margin-top: 200px;
-  width:500px;
+  margin-top: 150px;
   
 }
 
+.header, h1{
+  padding:0;
+  margin:5px 0;
+}
+
+.landingWrapper{
+display: grid;
+justify-content: center;
+text-align: center;
+}
+.formContainer{
+  margin-top: 100px;  
+}
+
 .searchBox:focus{
-  outline:none;
+  outline: none;
 }
-
 .searchBox{
-  border-radius: 10px;
+  font-size: 20px;
+  width: 400px;
+  padding: 10px 0 10px 20px;
   border-style: solid;
-  padding-top: 10px;
-  padding-left: 20px;
-  margin-bottom:10px;
-  padding-bottom:10px;
-  width: 95%;
-  font-size: 20px;
-
-}
-.listStyle{
-padding-left: 20px;
-  list-style-type: none;
-  width:95%;
-  color: #383838;
-  background-color:white;
-  font-size: 20px;
+  border-radius: 10px;
 }
 
-.listStyle:hover{
 
-background-color: #ede9e8;
-cursor: pointer;
-}
 
 button, input[type="submit"], input[type="reset"] {
 	background: none;
@@ -53,7 +43,8 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 .butn {
-  width:100%;
+  width: 420px;
+  margin-top: 20px;
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
   border-radius: 10px;
@@ -61,7 +52,7 @@ button, input[type="submit"], input[type="reset"] {
   color: #ffffff;
   font-size: 20px;
   background: #0eb5ed;
-  padding: 5px 10px 5px 10px;
+  padding: 7px 10px 7px 10px;
   text-decoration: none;
 }
 .butn:hover {

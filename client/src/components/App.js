@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import FoodForm from './FoodForm';
+import LandingPage from './Landing/LandingPage'
 import Randomplace from './RandomPlace';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Route exact path="/" component={FoodForm} />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/place" component={Randomplace} />
         </BrowserRouter>
       </div>
