@@ -11,6 +11,8 @@ class LandingForm extends Component {
                 componentRestrictions: { country: 'us' }
             }
         };
+        this.getLocation = this.getLocation.bind(this);
+        this.getCoords = this.getCoords.bind(this);
     }
 
 
@@ -39,6 +41,24 @@ class LandingForm extends Component {
         this.setState({ address });
     };
 
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.getCoords)
+        } else {
+            alert('GeoLocation not enabled');
+        }
+    }
+
+    getCoords(pos) {
+        console.log(pos)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&key=AIzaSyBvloS4OahFAEgjuX67ntBAB6FgdVhQgZU`)
+            .then(response => response.json())
+            .then(data => this.setState(
+                { address: data.results[0].formatted_address }
+            ))
+            .catch(error => alert(error));
+    }
+
     render() {
         return (
             <div>
@@ -53,7 +73,7 @@ class LandingForm extends Component {
                             <div>
                                 <input
                                     {...getInputProps({
-                                        placeholder: 'Enter Location here',
+                                        placeholder: 'Enter Location Here',
                                         className: 'searchBox',
                                     })}
                                 />
@@ -80,7 +100,9 @@ class LandingForm extends Component {
                             </div>
                         )}
                     </PlacesAutocomplete>
-                    <button className="butn">Find me Food like now</button>
+                    <input type="button" className="butn blue" onClick={this.getLocation} value="Use Current Location" />
+
+                    <input type="submit" className="butn green" />
                 </form>
 
             </div>

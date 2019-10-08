@@ -7,6 +7,9 @@ body{
 }
 
 .header, h1{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
   padding:0;
   margin:5px 0;
 }
@@ -14,10 +17,10 @@ body{
 .landingWrapper{
 display: grid;
 justify-content: center;
-text-align: center;
 }
 .formContainer{
   margin-top: 100px;  
+  width: 100%;
 }
 
 .searchBox:focus{
@@ -25,16 +28,15 @@ text-align: center;
 }
 .searchBox{
   font-size: 20px;
-  width: 400px;
-  padding: 10px 0 10px 20px;
+  width: 95%;
+  padding: 10px 0 10px 10px;
   border-style: solid;
   border-radius: 10px;
 }
 
 
 
-button, input[type="submit"], input[type="reset"] {
-	background: none;
+button, input[type="submit"], input[type="button"] {
 	color: inherit;
 	border: none;
 	padding: 0;
@@ -42,25 +44,35 @@ button, input[type="submit"], input[type="reset"] {
 	cursor: pointer;
 	outline: inherit;
 }
+
 .butn {
-  width: 420px;
+  height: 40px;
+  display:block;
+  width: 100%;
   margin-top: 20px;
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
   border-radius: 10px;
   font-family: Georgia;
   color: #ffffff;
   font-size: 20px;
-  background: #0eb5ed;
-  padding: 7px 10px 7px 10px;
+  padding: 10px 10px 10px 10px;
   text-decoration: none;
 }
-.butn:hover {
-  background: #0e49eb;
-  background-image: -webkit-linear-gradient(top, #0e49eb, #3498db);
-  background-image: -moz-linear-gradient(top, #0e49eb, #3498db);
-  background-image: -ms-linear-gradient(top, #0e49eb, #3498db);
-  background-image: -o-linear-gradient(top, #0e49eb, #3498db);
-  background-image: linear-gradient(to bottom, #0e49eb, #3498db);
-  text-decoration: none;
+
+.blue{
+  background-color:#00FFFF;
 }
+
+.green{
+  background-color:greenyellow;
+}
+
+
+.blue:hover {
+  background: #02cdfa;
+}
+
+.green:hover{
+  background-color: rgb(6, 240, 6);
+}
+
+

@@ -8,16 +8,15 @@ module.exports = app => {
 
     let address = "";
     const foodType = "restaurants";
-    const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease";
+    const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
     const range = 30000;
 
 
 
     app.post('/api/inputFields', (req, res) => {
         address = req.body.address.replace(', USA', '');
+        console.log('Post', address)
     })
-
-
 
     app.get('/api/getPlace', async (req, res) => {
         const response = await client.search({

@@ -4,9 +4,8 @@ class Header extends Component {
 
     render() {
         return (
-            <div class="header">
-                <h1>Can't decide where to eat?</h1>
-                <h1>Enter where to eat below </h1>
+            <div className="header">
+                <h1>Can't decide what to eat?</h1>
             </div>
         );
     }

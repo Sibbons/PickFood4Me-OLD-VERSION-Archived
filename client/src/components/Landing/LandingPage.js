@@ -7,7 +7,7 @@ class LandingPage extends Component {
     state = {}
     render() {
         return (
-            <div class="landingWrapper">
+            <div className="landingWrapper">
                 <Header />
                 <LandingForm />
             </div>
