@@ -42,7 +42,7 @@ class LandingForm extends Component {
     };
 
     getLocation() {
-        if (navigator.geolocation) {
+        if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(this.getCoords)
         } else {
             alert('GeoLocation not enabled');
@@ -68,6 +68,7 @@ class LandingForm extends Component {
                         onChange={this.handleChange}
                         onSelect={this.handleSelect}
                         searchOptions={this.state.options}
+                        requiredTxt
                     >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div>

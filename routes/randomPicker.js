@@ -1,5 +1,5 @@
 'use strict';
-const keys = require('../keys')
+const keys = require('../config/keys')
 const yelp = require('yelp-fusion');
 const client = yelp.client(keys.yelpKey);
 
@@ -9,7 +9,7 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 30000;
+    const range = 10000;
 
 
 
@@ -25,19 +25,28 @@ module.exports = app => {
             categories: choices,
             radius: range,
             open_now: true,
-        })
+            limit: 50
+        });
+        // response is undefined handle with if statement 
+        if (!response.jsonBody.businesses.length) {
+            res.send({
+                error: "error not found"
+            })
+        } else {
+            console.log('Total', response.jsonBody.businesses.length);
+            let randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
+            const randomfoodPlace = response.jsonBody.businesses[randomNum];
+            let locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city} ${randomfoodPlace.location.zip_code} ${randomfoodPlace.location.state}`;
+            const finalPlace = {
+                name: randomfoodPlace.name,
+                price: randomfoodPlace.price,
+                location: locationCombined,
+                phone: randomfoodPlace.display_phone
+            }
 
-        let randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
-        const randomfoodPlace = response.jsonBody.businesses[randomNum];
-        let locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city} ${randomfoodPlace.location.zip_code} ${randomfoodPlace.location.state}`;
-        const finalPlace = {
-            name: randomfoodPlace.name,
-            price: randomfoodPlace.price,
-            location: locationCombined,
-            phone: randomfoodPlace.display_phone
+            res.json(finalPlace);
+
         }
-
-        res.json(finalPlace);
 
     })
 

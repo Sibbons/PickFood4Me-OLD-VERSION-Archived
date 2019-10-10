@@ -34,8 +34,6 @@ justify-content: center;
   border-radius: 10px;
 }
 
-
-
 button, input[type="submit"], input[type="button"] {
 	color: inherit;
 	border: none;
