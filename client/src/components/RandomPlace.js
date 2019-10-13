@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-
 class RandomPlace extends Component {
     constructor(props) {
         super(props);
@@ -14,11 +12,11 @@ class RandomPlace extends Component {
         fetch('/api/getPlace')
             .then(response => response.json())
             .then(response => {
-                this.setState({ response });
+                this.setState({ response })
             });
     }
-    renderFields() {
 
+    renderFields() {
         if ('error' in this.state.response) {
             return <h1>
                 No location found with current preferences
@@ -39,16 +37,13 @@ class RandomPlace extends Component {
         }
     }
 
-
-
-
     render() {
-
         return (
             <div>
-                {this.renderFields}
+                {this.renderFields()}
             </div>
-        );
+        )
+
     }
 }
 

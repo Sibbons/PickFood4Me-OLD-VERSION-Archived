@@ -2,7 +2,6 @@
 const keys = require('../config/keys')
 const yelp = require('yelp-fusion');
 const client = yelp.client(keys.yelpKey);
-const fetch = require('node-fetch');
 
 
 module.exports = app => {
@@ -10,7 +9,8 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 10000;
+    const range = 0;
+
 
 
     app.post('/api/inputFields', (req, res) => {
@@ -27,7 +27,7 @@ module.exports = app => {
             open_now: true,
             limit: 50
         });
-
+        // response is undefined handle with if statement 
         if (!response.jsonBody.businesses.length) {
             res.send({
                 error: "error not found"
@@ -41,8 +41,9 @@ module.exports = app => {
                 name: randomfoodPlace.name,
                 price: randomfoodPlace.price,
                 location: locationCombined,
-                phone: randomfoodPlace.display_phone,
+                phone: randomfoodPlace.display_phone
             }
+
             res.json(finalPlace);
 
         }
