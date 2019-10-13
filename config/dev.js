@@ -1,3 +1,0 @@
-module.exports = {
-    yelpKey: 'zqu6rA6DFZHinP0SJbhZCyY3b4XI8Sdi5P8tmmPlfglgJ3L4tUmGIX8ndSuz7c2jIEmUdxn6KXXbq6HuNumZ2KVza5queU9l5p0RwUKM0t8wZKa1NvlLkIKQCiKZXXYx'
-}
