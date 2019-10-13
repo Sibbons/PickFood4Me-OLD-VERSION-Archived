@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PlacesAutocomplete from "react-places-autocomplete";
 
+
 class LandingForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            range: 5,
             address: '',
+            addressError: '',
             options: {
                 types: ['(cities)'],
                 componentRestrictions: { country: 'us' }
@@ -15,22 +18,35 @@ class LandingForm extends Component {
         this.getCoords = this.getCoords.bind(this);
     }
 
-
-    handleSubmit = event => {
-        const address = this.state.address;
-        const data = {
-            address
+    validate = () => {
+        let addressError = '';
+        if (!(this.state.address.length)) {
+            addressError = 'Must enter address';
+            this.setState({ addressError });
+            return false;
         }
+        return true;
+
+    }
+    handleSubmit = event => {
         event.preventDefault();
-        console.log(data);
-        fetch('/api/inputFields', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        window.location = "/place";
+        const isValid = this.validate();
+        if (isValid) {
+            const address = this.state.address;
+            const data = {
+                address
+            }
+            console.log(data);
+            fetch('/api/inputFields', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            window.location = "/place";
+        }
+
     }
 
     handleChange = address => {
@@ -40,6 +56,9 @@ class LandingForm extends Component {
     handleSelect = address => {
         this.setState({ address });
     };
+    handleRange = range => {
+        this.setState({ range });
+    }
 
     getLocation() {
         if ("geolocation" in navigator) {
@@ -68,7 +87,7 @@ class LandingForm extends Component {
                         onChange={this.handleChange}
                         onSelect={this.handleSelect}
                         searchOptions={this.state.options}
-                        requiredTxt
+
                     >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div>
@@ -101,6 +120,7 @@ class LandingForm extends Component {
                             </div>
                         )}
                     </PlacesAutocomplete>
+                    <div class="">{this.state.addressError}</div>
                     <input type="button" className="butn blue" onClick={this.getLocation} value="Use Current Location" />
 
                     <input type="submit" className="butn green" />

@@ -2,6 +2,7 @@
 const keys = require('../config/keys')
 const yelp = require('yelp-fusion');
 const client = yelp.client(keys.yelpKey);
+const fetch = require('node-fetch');
 
 
 module.exports = app => {
@@ -9,8 +10,9 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 0;
-
+    const range = 10000;
+    let long = 0;
+    let lat = 0;
 
 
     app.post('/api/inputFields', (req, res) => {
@@ -27,7 +29,7 @@ module.exports = app => {
             open_now: true,
             limit: 50
         });
-        // response is undefined handle with if statement 
+
         if (!response.jsonBody.businesses.length) {
             res.send({
                 error: "error not found"
@@ -37,14 +39,23 @@ module.exports = app => {
             const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
             const randomfoodPlace = response.jsonBody.businesses[randomNum];
             const locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city}, ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
-            const finalPlace = {
-                name: randomfoodPlace.name,
-                price: randomfoodPlace.price,
-                location: locationCombined,
-                phone: randomfoodPlace.display_phone
-            }
 
-            res.json(finalPlace);
+            fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + locationCombined + '&key=AIzaSyBvloS4OahFAEgjuX67ntBAB6FgdVhQgZU')
+                .then(response => response.json())
+                .then(data => {
+                    lat = data.results[0].geometry.location.lat;
+                    long = data.results[0].geometry.location.lng;
+                    const finalPlace = {
+                        name: randomfoodPlace.name,
+                        price: randomfoodPlace.price,
+                        location: locationCombined,
+                        phone: randomfoodPlace.display_phone,
+                        lat: lat,
+                        long: long,
+                    }
+                    res.json(finalPlace);
+                })
+
 
         }
 
