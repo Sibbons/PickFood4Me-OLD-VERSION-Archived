@@ -19,24 +19,36 @@ class RandomPlace extends Component {
     refreshPage = () => {
         window.location.reload();
     }
+    newLocation = () => {
+        window.location = '/';
+    }
     renderFields() {
         if ('error' in this.state.response) {
-            return <h1>
-                No location found with current preferences
-            </h1>
+            return (
+                <div className="errorWrapper">
+                    <h1>
+                        {this.state.response.error}
+                    </h1>
+                    <button type="button" className="errorBtn errorBtn" onClick={this.newLocation}> Enter New Location</button>
+                </div>
+            )
+
         }
         else if ('phone' in this.state.response) {
             return (
-                <div>
-                    <p>Name : {this.state.response.name}</p>
+                <div className="foodPlace">
+                    <p>Name: {this.state.response.name}</p>
                     <p>Location: {this.state.response.location}</p>
                     <p>Phone: {this.state.response.phone}</p>
-                    <div className="foodButtons">
+                    <div className="buttonContainer">
                         <a target='_blank'
                             href={`https://maps.google.com/?q=${this.state.response.location}`}
-                            className="blue myButton">Google Maps</a>
-                        <a target='_blank' href={this.state.response.url} className="red myButton">Open Yelp</a>
-                        <button type="button" className="green myButton" onClick={this.refreshPage}>New Spot!</button>
+                            className="blue myButton">Click to open Maps</a>
+                        <a target='_blank' href={this.state.response.url} className="red myButton">Click to Open Yelp</a>
+                    </div>
+                    <div className="buttonContainer">
+                        <button type="button" className="green myButton" onClick={this.refreshPage}>Find New Spot</button>
+                        <button type="button" className="purple myButton" onClick={this.newLocation}>Enter New Location</button>
                     </div>
 
 
@@ -51,7 +63,7 @@ class RandomPlace extends Component {
     render() {
         return (
             <div className="foodPlaceWrapper">
-                <div className="foodPlace">
+                <div>
                     {this.renderFields()}
                 </div>
             </div>

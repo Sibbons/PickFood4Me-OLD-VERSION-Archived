@@ -9,7 +9,7 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 10000;
+    const range = 1;
 
 
 
@@ -30,7 +30,7 @@ module.exports = app => {
         // response is undefined handle with if statement 
         if (!response.jsonBody.businesses.length) {
             res.send({
-                error: "error not found"
+                error: "No locations found"
             })
         } else {
             const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
