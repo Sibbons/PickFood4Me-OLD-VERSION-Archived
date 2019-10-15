@@ -6,6 +6,7 @@ class LandingForm extends Component {
         super(props);
         this.state = {
             address: '',
+            addressError: '',
             options: {
                 types: ['(cities)'],
                 componentRestrictions: { country: 'us' }
@@ -13,24 +14,39 @@ class LandingForm extends Component {
         };
         this.getLocation = this.getLocation.bind(this);
         this.getCoords = this.getCoords.bind(this);
+        this.isValid = this.isValid.bind(this);
+    }
+    isValid = () => {
+        let addressError = 'Must enter an address'
+        console.log('Inside isValid', this.state.address.anchor.length)
+        if (!this.state.address.length) {
+            this.setState({
+                addressError
+            });
+            return false;
+        }
+        return true;
     }
 
-
     handleSubmit = event => {
-        const address = this.state.address;
-        const data = {
-            address
-        }
         event.preventDefault();
-        console.log(data);
-        fetch('/api/inputFields', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        window.location = "/place";
+        let valid = this.isValid();
+        if (valid) {
+            const address = this.state.address;
+            const data = {
+                address
+            }
+            console.log(data);
+            fetch('/api/inputFields', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            window.location = "/place";
+        }
+
     }
 
     handleChange = address => {
@@ -101,9 +117,10 @@ class LandingForm extends Component {
                             </div>
                         )}
                     </PlacesAutocomplete>
+                    <div className="errorMsg">{this.state.addressError}</div>
                     <input type="button" className="butn blue" onClick={this.getLocation} value="Use Current Location" />
 
-                    <input type="submit" className="butn green" />
+                    <input type="submit" className="butn green" value="Submit" />
                 </form>
 
             </div>

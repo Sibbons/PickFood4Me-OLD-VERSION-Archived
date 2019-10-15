@@ -16,6 +16,9 @@ class RandomPlace extends Component {
             });
     }
 
+    refreshPage = () => {
+        window.location.reload();
+    }
     renderFields() {
         if ('error' in this.state.response) {
             return <h1>
@@ -25,10 +28,18 @@ class RandomPlace extends Component {
         else if ('phone' in this.state.response) {
             return (
                 <div>
-                    <p>Name: {this.state.response.name}</p>
-                    <p>Price: {this.state.response.price}</p>
+                    <p>Name : {this.state.response.name}</p>
                     <p>Location: {this.state.response.location}</p>
                     <p>Phone: {this.state.response.phone}</p>
+                    <div className="foodButtons">
+                        <a target='_blank'
+                            href={`https://maps.google.com/?q=${this.state.response.location}`}
+                            className="blue myButton">Google Maps</a>
+                        <a target='_blank' href={this.state.response.url} className="red myButton">Open Yelp</a>
+                        <button type="button" className="green myButton" onClick={this.refreshPage}>New Spot!</button>
+                    </div>
+
+
 
                 </div>
             )
@@ -39,8 +50,10 @@ class RandomPlace extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderFields()}
+            <div className="foodPlaceWrapper">
+                <div className="foodPlace">
+                    {this.renderFields()}
+                </div>
             </div>
         )
 

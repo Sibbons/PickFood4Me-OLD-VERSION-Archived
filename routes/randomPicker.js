@@ -9,7 +9,7 @@ module.exports = app => {
     let address = "";
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 0;
+    const range = 10000;
 
 
 
@@ -33,15 +33,14 @@ module.exports = app => {
                 error: "error not found"
             })
         } else {
-            console.log('Total', response.jsonBody.businesses.length);
             const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
             const randomfoodPlace = response.jsonBody.businesses[randomNum];
             const locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city}, ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
             const finalPlace = {
                 name: randomfoodPlace.name,
-                price: randomfoodPlace.price,
                 location: locationCombined,
-                phone: randomfoodPlace.display_phone
+                phone: randomfoodPlace.display_phone,
+                url: randomfoodPlace.url
             }
 
             res.json(finalPlace);
