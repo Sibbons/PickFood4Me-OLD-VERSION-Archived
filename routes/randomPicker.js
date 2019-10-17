@@ -19,8 +19,9 @@ module.exports = app => {
     })
 
     app.get('/api/getPlace', async (req, res) => {
-        let response = undefined
-        if (address != undefined) {
+        console.log('addy', address);
+        let response;
+        try {
             response = await client.search({
                 searchType: foodType,
                 location: address,
@@ -28,28 +29,27 @@ module.exports = app => {
                 radius: range,
                 open_now: true,
                 limit: 50
-            });
-        }
-
-        // response is undefined handle with if statement 
-        if (!response || !response.jsonBody.businesses.length || !address.length) {
+            })
+        } catch (err) {
             res.send({
                 error: "No locations found"
             })
-        } else {
-            const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
-            const randomfoodPlace = response.jsonBody.businesses[randomNum];
-            const locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city}, ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
-            const finalPlace = {
-                name: randomfoodPlace.name,
-                location: locationCombined,
-                phone: randomfoodPlace.display_phone,
-                url: randomfoodPlace.url
-            }
-
-            res.json(finalPlace);
-
         }
+
+
+
+        const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
+        const randomfoodPlace = response.jsonBody.businesses[randomNum];
+        const locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city}, ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
+        const finalPlace = {
+            name: randomfoodPlace.name,
+            location: locationCombined,
+            phone: randomfoodPlace.display_phone,
+            url: randomfoodPlace.url
+        }
+
+        res.json(finalPlace);
+
 
     })
 
