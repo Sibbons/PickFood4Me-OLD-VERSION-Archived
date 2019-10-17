@@ -37,18 +37,15 @@ class RandomPlace extends Component {
         else if ('phone' in this.state.response) {
             return (
                 <div className="foodPlace">
-                    <p>Name: {this.state.response.name}</p>
-                    <p>Location: {this.state.response.location}</p>
+                    <p>Name: <a className="yelp" target='_blank' href={this.state.response.url}>{this.state.response.name}</a></p>
+                    <p>Location: <a target='_blank' className="googleMaps"
+                        href={`https://maps.google.com/?q=${this.state.response.location}`}
+                    >{this.state.response.location}</a>
+                    </p>
                     <p>Phone: {this.state.response.phone}</p>
                     <div className="buttonContainer">
-                        <a target='_blank'
-                            href={`https://maps.google.com/?q=${this.state.response.location}`}
-                            className="blue myButton">Click to open Maps</a>
-                        <a target='_blank' href={this.state.response.url} className="red myButton">Click to Open Yelp</a>
-                    </div>
-                    <div className="buttonContainer">
-                        <button type="button" className="green myButton" onClick={this.refreshPage}>Find New Spot</button>
-                        <button type="button" className="purple myButton" onClick={this.newLocation}>Enter New Location</button>
+                        <button type="button" className="blue myButton" onClick={this.refreshPage}>Find New Spot</button>
+                        <button type="button" className="green myButton" onClick={this.newLocation}>Enter New Location</button>
                     </div>
 
 
@@ -56,7 +53,12 @@ class RandomPlace extends Component {
                 </div>
             )
         } else {
-            return <h1>Loading Please Wait</h1>
+            return (
+                <div class="lds-spinner">
+                    <div></div><div></div><div></div><div></div><div></div><div>
+                    </div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            )
         }
     }
 

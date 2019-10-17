@@ -6,10 +6,10 @@ const client = yelp.client(keys.yelpKey);
 
 module.exports = app => {
 
-    let address = "";
+    let address = undefined;
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
-    const range = 1;
+    const range = 15000;
 
 
 
@@ -19,16 +19,20 @@ module.exports = app => {
     })
 
     app.get('/api/getPlace', async (req, res) => {
-        const response = await client.search({
-            searchType: foodType,
-            location: address,
-            categories: choices,
-            radius: range,
-            open_now: true,
-            limit: 50
-        });
+        let response = undefined
+        if (address != undefined) {
+            response = await client.search({
+                searchType: foodType,
+                location: address,
+                categories: choices,
+                radius: range,
+                open_now: true,
+                limit: 50
+            });
+        }
+
         // response is undefined handle with if statement 
-        if (!response.jsonBody.businesses.length) {
+        if (!response || !response.jsonBody.businesses.length || !address.length) {
             res.send({
                 error: "No locations found"
             })
