@@ -78,6 +78,8 @@ class LandingForm extends Component {
     render() {
         return (
             <div>
+                <h1 className="header">Stuck Deciding  Where To Eat?</h1>
+
                 <form onSubmit={this.handleSubmit} className="formContainer">
                     <PlacesAutocomplete
                         value={this.state.address}
@@ -122,6 +124,7 @@ class LandingForm extends Component {
 
                     <input type="submit" className="butn green" value="Submit" />
                 </form>
+                <h1 className="footer">Only Displays Open Location</h1>
 
             </div>
         );

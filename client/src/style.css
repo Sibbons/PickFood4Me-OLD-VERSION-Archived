@@ -2,23 +2,25 @@ body{
   font-family: 'Open Sans',-Ubuntu, Cantarell,  'Helvetica Neue', sans-serif;
 }
 .App {
-  margin-top: 150px;
+height:90vh;
+display:flex;
+align-items: center;
+justify-content: center;  
 }
 
 .header, h1{
-  display:flex;
-  justify-content: center;
-  flex-direction: column;
   padding:0;
   margin:5px 0;
 }
-
-.landingWrapper{
-display: grid;
-justify-content: center;
+.footer{
+  color: red;
+  font-size: 20px;
+  margin-top: 25px;
+  display:flex;
+  justify-content: center;
 }
 .formContainer{
-  margin-top: 100px;  
+  margin-top: 50px;  
   width: 100%;
 }
 
@@ -68,7 +70,6 @@ button, input[type="submit"], input[type="button"] {
 .errorWrapper{
   display: grid;
   grid-template-columns: 1fr;
-  justify-items: center;
   width: 100%;
 }
 
@@ -110,21 +111,13 @@ button, input[type="submit"], input[type="button"] {
 .green:hover{
   background-color: rgb(6, 240, 6);
 }
-.foodPlaceWrapper{
-  margin-top: 150px;
-display:grid;
-justify-content: center;
-}
+
 
 .foodPlace{
   font-size: 30px;
   border-style:solid;
   padding: 50px;
   border-radius: 30px;
-}
-
-.foodPlace a{
-  text-decoration: none;
 }
 
 .yelp{
@@ -226,6 +219,8 @@ justify-content: center;
     opacity: 0;
   }
 }
+
+
 
 @media screen and (max-width: 800px){
   .header{

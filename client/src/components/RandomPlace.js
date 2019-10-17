@@ -64,7 +64,7 @@ class RandomPlace extends Component {
 
     render() {
         return (
-            <div className="foodPlaceWrapper">
+            <div>
                 <div>
                     {this.renderFields()}
                 </div>
