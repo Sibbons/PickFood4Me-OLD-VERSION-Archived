@@ -6,7 +6,7 @@ const client = yelp.client(keys.yelpKey);
 
 module.exports = app => {
 
-    let address = '';
+    let address = undefined;
     const foodType = "restaurants";
     const choices = "Japanese,Sushi,Ramen,Chinese,Buffet,Mexican,Filipino,Indian,Nepalease,American";
     const range = 15000;
@@ -40,7 +40,7 @@ module.exports = app => {
 
         const randomNum = Math.floor((Math.random() * response.jsonBody.businesses.length));
         const randomfoodPlace = response.jsonBody.businesses[randomNum];
-        const locationCombined = `${randomfoodPlace.location.address1} ${randomfoodPlace.location.city} ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
+        const locationCombined = `${randomfoodPlace.location.address1}, ${randomfoodPlace.location.city}, ${randomfoodPlace.location.state} ${randomfoodPlace.location.zip_code}`;
         const finalPlace = {
             name: randomfoodPlace.name,
             location: locationCombined,
