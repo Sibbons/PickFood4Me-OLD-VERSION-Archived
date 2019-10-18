@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const sslRedirect = require('heroku-ssl-redirect');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -14,7 +13,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
-app.use(sslRedirect());
 
 
 const PORT = process.env.PORT || 4000;
