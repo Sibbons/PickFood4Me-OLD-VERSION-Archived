@@ -54,11 +54,9 @@ class RandomPlace extends Component {
             )
         } else {
             return (
-                <div class="lds-spinner">
-                    <div></div><div></div><div></div><div></div><div></div><div>
-                    </div><div></div><div></div><div></div><div></div><div></div><div></div>
-                </div>
-            )
+                <div className="loading" >
+                    Loading
+                </div>)
         }
     }
 

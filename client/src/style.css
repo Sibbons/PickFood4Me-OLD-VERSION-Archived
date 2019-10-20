@@ -2,23 +2,27 @@ body{
   font-family: 'Open Sans',-Ubuntu, Cantarell,  'Helvetica Neue', sans-serif;
 }
 .App {
-  margin-top: 150px;
+height:85vh;
+display:flex;
+align-items: center;
+justify-content: center;  
 }
 
 .header, h1{
-  display:flex;
-  justify-content: center;
-  flex-direction: column;
   padding:0;
   margin:5px 0;
 }
-
-.landingWrapper{
-display: grid;
-justify-content: center;
+.footer{
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 25px;
+  display:flex;
+  justify-content: center;
 }
+
 .formContainer{
-  margin-top: 100px;  
+  margin-top: 50px;  
   width: 100%;
 }
 
@@ -65,15 +69,6 @@ button, input[type="submit"], input[type="button"] {
   text-decoration: none;
 }
 
-.errorWrapper{
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  width: 100%;
-}
-
-
-
 .myButton {
 	border-radius:28px;
 	border:1px solid #111;
@@ -87,12 +82,21 @@ button, input[type="submit"], input[type="button"] {
   width: 300px;
   margin: 5px;
 }
+.errorWrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  font-size: 18px;
+}
+
 .errorBtn{
   margin-top: 20px;
   width: 300px;
   background-color: red;
   border-radius: 25px;
-  padding: 10px;
+  padding: 13px;
+  font-size: 18px;
+
 }
 
 .blue{
@@ -111,9 +115,8 @@ button, input[type="submit"], input[type="button"] {
   background-color: rgb(6, 240, 6);
 }
 .foodPlaceWrapper{
-  margin-top: 150px;
-display:grid;
-justify-content: center;
+  display:flex;
+  justify-content: center;
 }
 
 .foodPlace{
@@ -121,10 +124,6 @@ justify-content: center;
   border-style:solid;
   padding: 50px;
   border-radius: 30px;
-}
-
-.foodPlace a{
-  text-decoration: none;
 }
 
 .yelp{
@@ -146,94 +145,21 @@ justify-content: center;
   text-align: center;
 }
 
-/*Loading CSS */
-.lds-spinner {
-  margin-top: 100px;
-  color: official;
-  display: inline-block;
-  position: relative;
-  width: 100px;
-  height: 100px;
+.loading{
+font-size: 80px;
+font-family: Ubuntu;
 }
-.lds-spinner div {
-  transform-origin: 32px 32px;
-  animation: lds-spinner 1.2s linear infinite;
-}
-.lds-spinner div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: 29px;
-  width: 5px;
-  height: 14px;
-  border-radius: 20%;
-  background: #000;
-}
-.lds-spinner div:nth-child(1) {
-  transform: rotate(0deg);
-  animation-delay: -1.1s;
-}
-.lds-spinner div:nth-child(2) {
-  transform: rotate(30deg);
-  animation-delay: -1s;
-}
-.lds-spinner div:nth-child(3) {
-  transform: rotate(60deg);
-  animation-delay: -0.9s;
-}
-.lds-spinner div:nth-child(4) {
-  transform: rotate(90deg);
-  animation-delay: -0.8s;
-}
-.lds-spinner div:nth-child(5) {
-  transform: rotate(120deg);
-  animation-delay: -0.7s;
-}
-.lds-spinner div:nth-child(6) {
-  transform: rotate(150deg);
-  animation-delay: -0.6s;
-}
-.lds-spinner div:nth-child(7) {
-  transform: rotate(180deg);
-  animation-delay: -0.5s;
-}
-.lds-spinner div:nth-child(8) {
-  transform: rotate(210deg);
-  animation-delay: -0.4s;
-}
-.lds-spinner div:nth-child(9) {
-  transform: rotate(240deg);
-  animation-delay: -0.3s;
-}
-.lds-spinner div:nth-child(10) {
-  transform: rotate(270deg);
-  animation-delay: -0.2s;
-}
-.lds-spinner div:nth-child(11) {
-  transform: rotate(300deg);
-  animation-delay: -0.1s;
-}
-.lds-spinner div:nth-child(12) {
-  transform: rotate(330deg);
-  animation-delay: 0s;
-}
-@keyframes lds-spinner {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+
+
+
 
 @media screen and (max-width: 800px){
   .header{
     font-size: 13px;
   }
   .foodPlace{
-    font-size: 14px;
-    padding:5px;
+    font-size: 15px;
+    padding: 5px 10px 0 10px;
   }
   .myButton {
     border-radius:28px;
@@ -243,7 +169,7 @@ justify-content: center;
     color:#ffffff;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size:8px;
-    padding:8px 15px;
+    padding:8px 15px ;
     text-decoration:none;
     width: 120px;
   }

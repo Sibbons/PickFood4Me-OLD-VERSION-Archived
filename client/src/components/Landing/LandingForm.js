@@ -78,6 +78,7 @@ class LandingForm extends Component {
     render() {
         return (
             <div>
+
                 <form onSubmit={this.handleSubmit} className="formContainer">
                     <PlacesAutocomplete
                         value={this.state.address}
