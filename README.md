@@ -8,5 +8,5 @@ My friends and I cannot ever decide where to eat food. This app will save us alo
 [Yelp](https://www.yelp.com/developers/documentation/v3)  
 [Google Maps](https://developers.google.com/maps/documentation)
 
-#Deployment
+# Deployment
 Hosted [here](https://www.pickfood4me.com/)
