@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-import LandingPage from './Landing/LandingPage'
-import Randomplace from './RandomPlace';
+import LandingPage from "./LandingForm";
+import Randomplace from "./RandomPlace";
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
         </BrowserRouter>
       </div>
     );
-  };
-};
+  }
+}
 
 export default App;
