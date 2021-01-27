@@ -67,7 +67,7 @@ class RandomPlace extends Component {
             </button>
             <button
               type="button"
-              className="blue myButton"
+              className="lightBlue myButton"
               onClick={this.newLocation}
             >
               Enter New Location
