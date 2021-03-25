@@ -1,75 +1,76 @@
-import React, { Component } from "react";
-class RandomPlace extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      response: {},
-    };
-    this.renderFields = this.renderFields.bind(this);
-  }
+import React, { useState, useEffect, useContext } from 'react';
+import {useHistory} from 'react-router-dom';
 
-  componentDidMount() {
-    fetch("/api/getPlace")
-      .then((response) => response.json())
-      .then((response) => {
-        this.setState({ response });
-      });
-  }
+import {AddressContext} from './AddressContext';
+  const {address, setAddress} = useContext(AddressContext);
 
-  refreshPage = () => {
-    window.location.reload();
+
+function RandomPlace(){
+  const [response, setResponse] = useState({});
+  const {address, setAddress} = useContext(AddressContext)
+  const history = useHistory()
+
+  //console.log('address',address);
+
+  useEffect(() => {
+    getplace();
+  }, [address]);
+  
+  //http://localhost:5000
+  //https://pickfoodforme.herokuapp.com/
+  function getplace(){
+    setResponse({});
+    try{
+    
+    fetch(`https://pickfoodforme.herokuapp.com/api/getplace/${address}`)
+    .then((response) => response.json())
+    .then((response) => {
+      setResponse(response);
+    });}catch(error){
+      console.log(error);
+    }
   };
-  newLocation = () => {
-    window.location = "/";
+
+  function newLocation(){
+    setAddress("");
+    history.push('/');
   };
-  renderFields() {
-    if ("error" in this.state.response) {
+
+  function renderFields() {
+    if ("error" in response || !address.length ) {
       return (
         <div className="errorWrapper">
-          <h1>{this.state.response.error}</h1>
-          <button
-            type="button"
-            className="errorBtn errorBtn"
-            onClick={this.newLocation}
-          >
+          <h1>{response.error || "Must enter an address"}</h1>
+          <button type="button" className="errorBtn errorBtn" onClick={newLocation}>
             {" "}
             Enter New Location
           </button>
         </div>
       );
-    } else if ("phone" in this.state.response) {
+    } else if ("phone" in response) {
+
       return (
         <div className="foodPlace">
           <p>
             Name:{" "}
-            <a className="yelp" target="_blank" href={this.state.response.url}>
-              {this.state.response.name}
+            <a className="yelp" target="_blank" href={response.url}>
+              {response.name}
             </a>
           </p>
           <p>
             Location:{" "}
-            <a
-              target="_blank"
-              className="googleMaps"
-              href={`https://maps.google.com/?q=${this.state.response.location}`}
+            <a target="_blank" className="googleMaps"
+               href={`https://maps.google.com/?q=${response.location}`}
             >
-              {this.state.response.location}
+              {response.location}
             </a>
           </p>
-          <p>Phone: {this.state.response.phone}</p>
+          <p>Phone: {response.phone}</p>
           <div className="buttonContainer">
-            <button
-              type="button"
-              className="blue myButton"
-              onClick={this.refreshPage}
-            >
+            <button type="button" className="blue myButton" onClick={getplace}>
               Find New Spot
             </button>
-            <button
-              type="button"
-              className="lightBlue myButton"
-              onClick={this.newLocation}
-            >
+            <button type="button" className="lightBlue myButton" onClick={newLocation}>
               Enter New Location
             </button>
           </div>
@@ -79,14 +80,12 @@ class RandomPlace extends Component {
       return <div className="loading">Loading</div>;
     }
   }
-
-  render() {
-    return (
-      <div className="foodPlaceWrapper">
-        <div>{this.renderFields()}</div>
-      </div>
-    );
-  }
+  return (
+    <div className="foodPlaceWrapper">
+      <div>{renderFields()}</div>
+    </div>
+  );
 }
+
 
 export default RandomPlace;

@@ -1,20 +1,26 @@
-import React, { Component } from "react";
+import React, { useState, useMemo } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import {AddressContext} from './AddressContext';
 
-import LandingPage from "./LandingForm";
-import Randomplace from "./RandomPlace";
 
-class App extends Component {
-  render() {
+import LandingForm from './LandingForm';
+import RandomPlace from "./RandomPlace";
+
+function App(){
+    const [address, setAddress] = useState("");
+    const value = useMemo(() => ({address, setAddress}), [address, setAddress]);
+  
     return (
       <div className="App">
-        <BrowserRouter>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/place" component={Randomplace} />
-        </BrowserRouter>
+        <AddressContext.Provider value={value}>
+          <BrowserRouter>
+            <Route exact path="/" component={LandingForm} />
+            <Route exact path="/place" component={RandomPlace} />
+          </BrowserRouter>
+        </AddressContext.Provider>
+
       </div>
     );
-  }
 }
 
 export default App;
