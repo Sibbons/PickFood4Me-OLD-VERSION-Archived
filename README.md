@@ -1,4 +1,4 @@
-# PickFood4Me
+# PickFoodForMe
 PickFood4Me is a web application that helps users decide where to eat food through current location or city input.
 
 # Motivation
@@ -14,4 +14,4 @@ My friends and I cannot ever decide where to eat food. This app will save us a l
 # Deployed
 The actual app can be found here. 
 
-https://pickfood4me.herokuapp.com/
+https://pickfoodforme.netlify.app/
