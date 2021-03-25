@@ -2,7 +2,7 @@
 PickFood4Me is a web application that helps users decide where to eat food through current location or city input.
 
 # Motivation
-My friends and I cannot ever decide where to eat food. This app will save us a lot of time in the future. 
+My friends and I cannot ever decide where to eat food. Arguing about where to eat takes a lot of time and sometimes doesnt even result in a place being picked. This app was made so that everyone could agree on a specific spot to eat at. 
 
 # APIs Used
 [Yelp](https://www.yelp.com/developers/documentation/v3)  
